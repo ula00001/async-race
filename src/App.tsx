@@ -4,7 +4,7 @@ import GaragePage from "./components/Garage/GaragePage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/async-race">
       <Header />
       <main style={{ flex: 1 }}>
         <Routes>

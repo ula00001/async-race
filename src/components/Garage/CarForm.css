@@ -1,0 +1,55 @@
+.car-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+  backdrop-filter: blur(8px);
+}
+
+.car-form-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.car-form-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  min-width: 70px;
+}
+
+.car-form-input {
+  flex: 1;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+.car-form-error {
+  font-size: 0.75rem;
+  color: #ff4444;
+  padding-left: var(--space-sm);
+}
+
+@media (max-width: 600px) {
+  .car-form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .car-form-label {
+    min-width: auto;
+  }
+
+  .car-form-input {
+    max-width: 100%;
+  }
+}

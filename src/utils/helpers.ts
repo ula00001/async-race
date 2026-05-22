@@ -10,3 +10,13 @@ export const validateCarName = (name: string): string | null => {
   }
   return null;
 };
+
+export const formatTime = (timeInSeconds: number): string => {
+  const PRECISION = 2;
+  return `${timeInSeconds.toFixed(PRECISION)}s`;
+};
+
+export const getTotalPages = (
+  totalCount: number,
+  itemsPerPage: number,
+): number => Math.max(1, Math.ceil(totalCount / itemsPerPage));

@@ -34,6 +34,10 @@ export interface Winner {
   time: number;
 }
 
+export interface WinnerWithCar extends Winner {
+  car: Car | null;
+}
+
 export interface CreateWinnerPayload {
   id: number;
   wins: number;
@@ -48,6 +52,16 @@ export interface UpdateWinnerPayload {
 export interface WinnersResponse {
   winners: Winner[];
   totalCount: number;
+}
+
+export interface Winner {
+  id: number;
+  wins: number;
+  time: number;
+}
+
+export interface WinnerWithCar extends Winner {
+  car: Car | null;
 }
 
 export type SortField = "id" | "wins" | "time";

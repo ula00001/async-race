@@ -12,7 +12,7 @@ export function useCarForm() {
   const form = useAppSelector((state) => state.garage);
   const [createError, setCreateError] = useState<string | null>(null);
   const [editError, setEditError] = useState<string | null>(null);
-
+  const { isRaceActive } = useAppSelector((state) => state.race);
   const handleCreate = useCallback(() => {
     const err = validateCarName(form.createName);
     if (err) {
@@ -48,6 +48,7 @@ export function useCarForm() {
   }, [dispatch, form.editId, form.editName, form.editColor]);
 
   return {
+    isRaceActive,
     form,
     createError,
     editError,

@@ -1,0 +1,30 @@
+.race-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.race-controls-group {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.race-controls-spacer {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .race-controls {
+    justify-content: center;
+  }
+
+  .race-controls-spacer {
+    display: none;
+  }
+}

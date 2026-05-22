@@ -74,6 +74,31 @@ const raceSlice = createSlice({
     resetCar(state, action: PayloadAction<number>) {
       state.carStates[action.payload] = { ...defaultCarState };
     },
+    setRaceActive(state, action: PayloadAction<boolean>) {
+      state.isRaceActive = action.payload;
+    },
+    setWinner(
+      state,
+      action: PayloadAction<{ id: number; name: string; time: number }>,
+    ) {
+      state.winnerId = action.payload.id;
+      state.winnerName = action.payload.name;
+      state.winnerTime = action.payload.time;
+      state.showWinnerBanner = true;
+    },
+    hideWinnerBanner(state) {
+      state.showWinnerBanner = false;
+    },
+    resetAllCars(state) {
+      Object.keys(state.carStates).forEach((key) => {
+        state.carStates[Number(key)] = { ...defaultCarState };
+      });
+      state.isRaceActive = false;
+      state.winnerId = null;
+      state.winnerName = "";
+      state.winnerTime = 0;
+      state.showWinnerBanner = false;
+    },
   },
 });
 
@@ -83,6 +108,10 @@ export const {
   setCarBroken,
   setCarFinished,
   resetCar,
+  setRaceActive,
+  setWinner,
+  resetAllCars,
+  hideWinnerBanner,
 } = raceSlice.actions;
 
 export default raceSlice.reducer;

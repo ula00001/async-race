@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchCars } from "../../store/garageSlice";
+import { fetchCars, setCurrentPage } from "../../store/garageSlice";
+import { GARAGE_PAGE_LIMIT } from "../../utils/constants";
 import CarForm from "./CarForm";
+import RaceControls from "./RaceControls";
+import CarTrack from "./CarTrack";
+import Pagination from "../shared/Pagination";
+import WinnerBanner from "../shared/WinnerBanner";
 import "./GaragePage.css";
-import CarTrack from "./CarTrack.tsx";
 
 interface GarageHeaderProps {
   totalCount: number;
@@ -41,10 +45,19 @@ function GaragePage() {
     dispatch(fetchCars(currentPage));
   }, [dispatch, currentPage]);
 
+  const handlePageChange = useCallback(
+    (page: number) => {
+      dispatch(setCurrentPage(page));
+      dispatch(fetchCars(page));
+    },
+    [dispatch],
+  );
+
   return (
     <div className="garage-page container">
       <GarageHeader totalCount={totalCount} />
       <CarForm />
+      <RaceControls />
 
       {isLoading && <div className="garage-loading">LOADING...</div>}
 
@@ -57,6 +70,14 @@ function GaragePage() {
           ))}
         </div>
       )}
+
+      <Pagination
+        currentPage={currentPage}
+        totalCount={totalCount}
+        itemsPerPage={GARAGE_PAGE_LIMIT}
+        onPageChange={handlePageChange}
+      />
+      <WinnerBanner />
     </div>
   );
 }

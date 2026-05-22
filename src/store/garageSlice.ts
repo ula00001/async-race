@@ -6,7 +6,8 @@ import {
 import type { Car } from "../types";
 import * as garageApi from "../api/garageApi";
 import * as winnersApi from "../api/winnersApi";
-import { GARAGE_PAGE_LIMIT } from "../utils/constants";
+import { GARAGE_PAGE_LIMIT, RANDOM_CARS_COUNT } from "../utils/constants";
+import { generateRandomCar } from "../utils/carNames.ts";
 
 interface GarageState {
   cars: Car[];
@@ -90,6 +91,9 @@ const garageSlice = createSlice({
     setEditColor(state, action: PayloadAction<string>) {
       state.editColor = action.payload;
     },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -122,6 +126,19 @@ export const deleteCarAction = createAsyncThunk(
   },
 );
 
+export const generateRandomCars = createAsyncThunk(
+  "garage/generateRandom",
+  async (_, { dispatch, getState }) => {
+    const promises = Array.from({ length: RANDOM_CARS_COUNT }, () => {
+      const { name, color } = generateRandomCar();
+      return garageApi.createCar({ name, color });
+    });
+    await Promise.all(promises);
+    const state = getState() as { garage: GarageState };
+    dispatch(fetchCars(state.garage.currentPage));
+  },
+);
+
 export const {
   setCreateName,
   setCreateColor,
@@ -129,6 +146,7 @@ export const {
   clearEdit,
   setEditName,
   setEditColor,
+  setCurrentPage,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;

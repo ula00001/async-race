@@ -1,0 +1,152 @@
+.winners-page {
+  padding: var(--space-lg) 0;
+  animation: fadeIn 0.4s ease;
+}
+
+.winners-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.winners-count {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--neon-magenta);
+  letter-spacing: 0.1em;
+}
+
+.winners-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+}
+
+.winners-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.winners-table th {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  text-align: left;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(0, 240, 255, 0.03);
+  white-space: nowrap;
+}
+
+.winners-table th.sortable {
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  user-select: none;
+}
+
+.winners-table th.sortable:hover {
+  color: var(--neon-magenta);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+.winners-table th.active-sort {
+  color: var(--neon-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.sort-indicator {
+  margin-left: var(--space-xs);
+  font-size: 0.6rem;
+}
+
+.winners-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+  vertical-align: middle;
+}
+
+.winners-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.winners-table tbody tr:hover {
+  background: rgba(0, 240, 255, 0.03);
+}
+
+.winners-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.winner-number {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.winner-car-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.winner-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.winner-wins {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--neon-green);
+}
+
+.winner-time {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--neon-yellow);
+}
+
+.winners-empty {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.winners-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.15em;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@media (max-width: 600px) {
+  .winners-table th,
+  .winners-table td {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.8rem;
+  }
+
+  .winners-table th {
+    font-size: 0.6rem;
+  }
+}

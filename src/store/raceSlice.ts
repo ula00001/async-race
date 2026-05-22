@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface CarRaceState {
   position: number;
@@ -22,7 +22,7 @@ const initialState: RaceState = {
   carStates: {},
   isRaceActive: false,
   winnerId: null,
-  winnerName: '',
+  winnerName: "",
   winnerTime: 0,
   showWinnerBanner: false,
 };
@@ -37,7 +37,7 @@ const defaultCarState: CarRaceState = {
 };
 
 const raceSlice = createSlice({
-  name: 'race',
+  name: "race",
   initialState,
   reducers: {
     initCarState(state, action: PayloadAction<number>) {
@@ -45,7 +45,10 @@ const raceSlice = createSlice({
         state.carStates[action.payload] = { ...defaultCarState };
       }
     },
-    setEngineStarted(state, action: PayloadAction<{ id: number; duration: number }>) {
+    setEngineStarted(
+      state,
+      action: PayloadAction<{ id: number; duration: number }>,
+    ) {
       const carState = state.carStates[action.payload.id];
       if (carState) {
         carState.isEngineStarted = true;

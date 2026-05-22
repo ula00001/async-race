@@ -50,13 +50,13 @@ function GaragePage() {
 
       {!isLoading && cars.length === 0 && <GarageEmpty />}
 
-        {!isLoading && cars.length > 0 && (
-            <div className="garage-cars-list">
-                {cars.map((car) => (
-                    <CarTrack key={car.id} car={car} />
-                ))}
-            </div>
-        )}
+      {!isLoading && cars.length > 0 && (
+        <div className="garage-cars-list">
+          {cars.map((car) => (
+            <CarTrack key={car.id} car={car} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

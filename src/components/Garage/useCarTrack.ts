@@ -1,16 +1,16 @@
-import { useCallback, useRef, useEffect } from 'react';
-import type { RefObject } from 'react';
-import type { Car } from '../../types';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectCarForEdit, deleteCarAction } from '../../store/garageSlice';
+import { useCallback, useRef, useEffect } from "react";
+import type { RefObject } from "react";
+import type { Car } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { selectCarForEdit, deleteCarAction } from "../../store/garageSlice";
 import {
   initCarState,
   setEngineStarted,
   setCarBroken,
   setCarFinished,
   resetCar,
-} from '../../store/raceSlice';
-import * as engineApi from '../../api/engineApi';
+} from "../../store/raceSlice";
+import * as engineApi from "../../api/engineApi";
 
 const TRACK_OFFSET_PX = 70;
 
@@ -36,8 +36,8 @@ export function useCarTrackAnimation(
       carRef.current.style.transitionDuration = `${carDuration}ms`;
       carRef.current.style.transform = `translateY(-50%) translateX(${maxTranslate}px)`;
     } else {
-      carRef.current.style.transitionDuration = '0ms';
-      carRef.current.style.transform = 'translateY(-50%) translateX(0px)';
+      carRef.current.style.transitionDuration = "0ms";
+      carRef.current.style.transform = "translateY(-50%) translateX(0px)";
     }
   }, [carRef, roadRef, carPosition, carDuration]);
 
@@ -45,7 +45,7 @@ export function useCarTrackAnimation(
     if (!carRef.current || !isBroken) return;
     const computedStyle = window.getComputedStyle(carRef.current);
     const currentTransform = computedStyle.transform;
-    carRef.current.style.transitionDuration = '0ms';
+    carRef.current.style.transitionDuration = "0ms";
     carRef.current.style.transform = currentTransform;
   }, [carRef, isBroken]);
 }
@@ -59,7 +59,9 @@ export function useCarEngine(carId: number) {
       const duration = result.distance / result.velocity;
       dispatch(setEngineStarted({ id: carId, duration }));
       const driveResult = await engineApi.driveEngine(carId);
-      dispatch(driveResult.success ? setCarFinished(carId) : setCarBroken(carId));
+      dispatch(
+        driveResult.success ? setCarFinished(carId) : setCarBroken(carId),
+      );
     } catch {
       dispatch(setCarBroken(carId));
     }
@@ -88,7 +90,13 @@ export function useCarTrack(car: Car) {
     dispatch(initCarState(car.id));
   }, [dispatch, car.id]);
 
-  useCarTrackAnimation(carRef, roadRef, carState?.position, carState?.duration, carState?.isBroken);
+  useCarTrackAnimation(
+    carRef,
+    roadRef,
+    carState?.position,
+    carState?.duration,
+    carState?.isBroken,
+  );
 
   const { handleStart, handleStop } = useCarEngine(car.id);
 

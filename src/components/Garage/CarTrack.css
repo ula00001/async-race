@@ -56,7 +56,7 @@
 }
 
 .car-track-road::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
@@ -73,7 +73,7 @@
 }
 
 .car-track-road::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 60px;
@@ -88,7 +88,13 @@
   right: 4px;
   bottom: 0;
   width: 3px;
-  background: repeating-linear-gradient(180deg, #fff 0px, #fff 3px, #000 3px, #000 6px);
+  background: repeating-linear-gradient(
+    180deg,
+    #fff 0px,
+    #fff 3px,
+    #000 3px,
+    #000 6px
+  );
   opacity: 0.5;
   z-index: 2;
 }

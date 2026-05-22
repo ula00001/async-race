@@ -3,7 +3,7 @@ interface CarIconProps {
   className?: string;
 }
 
-function CarIcon({ color, className = '' }: CarIconProps) {
+function CarIcon({ color, className = "" }: CarIconProps) {
   return (
     <svg
       className={className}
@@ -27,17 +27,54 @@ function CarIcon({ color, className = '' }: CarIconProps) {
         strokeWidth="0.5"
       />
 
-      <circle cx="30" cy="35" r="8" fill="#1a1a2e" stroke="#555" strokeWidth="2" />
+      <circle
+        cx="30"
+        cy="35"
+        r="8"
+        fill="#1a1a2e"
+        stroke="#555"
+        strokeWidth="2"
+      />
       <circle cx="30" cy="35" r="4" fill="#333" stroke="#777" strokeWidth="1" />
 
-      <circle cx="90" cy="35" r="8" fill="#1a1a2e" stroke="#555" strokeWidth="2" />
+      <circle
+        cx="90"
+        cy="35"
+        r="8"
+        fill="#1a1a2e"
+        stroke="#555"
+        strokeWidth="2"
+      />
       <circle cx="90" cy="35" r="4" fill="#333" stroke="#777" strokeWidth="1" />
 
-      <rect x="110" y="24" width="6" height="4" rx="1" fill="#ffe600" opacity="0.9" />
+      <rect
+        x="110"
+        y="24"
+        width="6"
+        height="4"
+        rx="1"
+        fill="#ffe600"
+        opacity="0.9"
+      />
 
-      <rect x="5" y="26" width="4" height="3" rx="1" fill="#ff2d2d" opacity="0.8" />
+      <rect
+        x="5"
+        y="26"
+        width="4"
+        height="3"
+        rx="1"
+        fill="#ff2d2d"
+        opacity="0.8"
+      />
 
-      <line x1="40" y1="18" x2="80" y2="18" stroke="rgba(255,255,255,0.15)" strokeWidth="2" />
+      <line
+        x1="40"
+        y1="18"
+        x2="80"
+        y2="18"
+        stroke="rgba(255,255,255,0.15)"
+        strokeWidth="2"
+      />
     </svg>
   );
 }

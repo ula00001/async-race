@@ -1,7 +1,7 @@
-import type { Car } from '../../types';
-import CarIcon from './CarIcon';
-import { useCarTrack } from './useCarTrack';
-import './CarTrack.css';
+import type { Car } from "../../types";
+import CarIcon from "./CarIcon";
+import { useCarTrack } from "./useCarTrack";
+import "./CarTrack.css";
 
 interface CarTrackProps {
   car: Car;
@@ -14,7 +14,12 @@ interface EngineButtonsProps {
   onStop: () => void;
 }
 
-function EngineButtons({ id, isEngineOn, onStart, onStop }: EngineButtonsProps) {
+function EngineButtons({
+  id,
+  isEngineOn,
+  onStart,
+  onStop,
+}: EngineButtonsProps) {
   return (
     <div className="car-track-controls">
       <button
@@ -91,7 +96,12 @@ function CarTrackHeader({
 }: TrackHeaderProps) {
   return (
     <div className="car-track-header">
-      <EngineButtons id={car.id} isEngineOn={isEngineOn} onStart={onStart} onStop={onStop} />
+      <EngineButtons
+        id={car.id}
+        isEngineOn={isEngineOn}
+        onStart={onStart}
+        onStop={onStop}
+      />
       <span className="car-track-name" style={{ color: car.color }}>
         {car.name}
       </span>
@@ -101,16 +111,27 @@ function CarTrackHeader({
 }
 
 function CarTrack({ car }: CarTrackProps) {
-  const { carState, carRef, roadRef, handleStart, handleStop, handleSelect, handleDelete } =
-    useCarTrack(car);
+  const {
+    carState,
+    carRef,
+    roadRef,
+    handleStart,
+    handleStop,
+    handleSelect,
+    handleDelete,
+  } = useCarTrack(car);
 
   const isEngineOn = carState?.isEngineStarted ?? false;
   const isDriving = carState?.isDriving ?? false;
   const isBroken = carState?.isBroken ?? false;
 
-  const carClasses = ['car-track-car', isDriving ? 'driving' : '', isBroken ? 'broken' : '']
+  const carClasses = [
+    "car-track-car",
+    isDriving ? "driving" : "",
+    isBroken ? "broken" : "",
+  ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   return (
     <div className="car-track">

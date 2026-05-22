@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchCars } from "../../store/garageSlice";
 import CarForm from "./CarForm";
 import "./GaragePage.css";
+import CarTrack from "./CarTrack.tsx";
 
 interface GarageHeaderProps {
   totalCount: number;
@@ -48,6 +49,14 @@ function GaragePage() {
       {isLoading && <div className="garage-loading">LOADING...</div>}
 
       {!isLoading && cars.length === 0 && <GarageEmpty />}
+
+        {!isLoading && cars.length > 0 && (
+            <div className="garage-cars-list">
+                {cars.map((car) => (
+                    <CarTrack key={car.id} car={car} />
+                ))}
+            </div>
+        )}
     </div>
   );
 }

@@ -1,0 +1,176 @@
+.car-track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-normal);
+  animation: slideInRight 0.3s ease;
+}
+
+.car-track:hover {
+  border-color: var(--border-glow);
+}
+
+.car-track-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.car-track-controls {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.car-track-name {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.car-track-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.car-track-road {
+  position: relative;
+  height: 44px;
+  background: var(--bg-track);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+.car-track-road::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0px,
+    rgba(255, 255, 255, 0.08) 20px,
+    transparent 20px,
+    transparent 40px
+  );
+  transform: translateY(-50%);
+}
+
+.car-track-road::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 60px;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.car-track-finish {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  bottom: 0;
+  width: 3px;
+  background: repeating-linear-gradient(180deg, #fff 0px, #fff 3px, #000 3px, #000 6px);
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.car-track-car {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%) translateX(0);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  transition: none;
+}
+
+.car-track-car.driving {
+  transition-property: transform;
+  transition-timing-function: linear;
+}
+
+.car-track-car.broken {
+  filter: grayscale(0.5) brightness(0.7);
+}
+
+.car-track-broken {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  font-size: 14px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.engine-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all var(--transition-normal);
+  padding: 0;
+}
+
+.engine-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.engine-btn-start {
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+}
+
+.engine-btn-start:hover:not(:disabled) {
+  background: rgba(57, 255, 20, 0.15);
+  box-shadow: var(--glow-green);
+}
+
+.engine-btn-stop {
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.engine-btn-stop:hover:not(:disabled) {
+  background: rgba(255, 45, 149, 0.15);
+  box-shadow: var(--glow-pink);
+}
+
+@media (max-width: 500px) {
+  .car-track-header {
+    gap: var(--space-xs);
+  }
+
+  .car-track-road {
+    height: 36px;
+  }
+
+  .car-track-name {
+    font-size: 0.7rem;
+  }
+}

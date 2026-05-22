@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import type { Car } from "../types";
 import * as garageApi from "../api/garageApi";
+import * as winnersApi from '../api/winnersApi';
 import { GARAGE_PAGE_LIMIT } from "../utils/constants";
 
 interface GarageState {
@@ -89,9 +90,6 @@ const garageSlice = createSlice({
     setEditColor(state, action: PayloadAction<string>) {
       state.editColor = action.payload;
     },
-    setCurrentPage(state, action: PayloadAction<number>) {
-      state.currentPage = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,6 +108,20 @@ const garageSlice = createSlice({
   },
 });
 
+export const deleteCarAction = createAsyncThunk(
+    'garage/deleteCar',
+    async (id: number, { dispatch, getState }) => {
+      await garageApi.deleteCar(id);
+      try {
+        await winnersApi.deleteWinner(id);
+      } catch {
+        // Winner might not exist
+      }
+      const state = getState() as { garage: GarageState };
+      dispatch(fetchCars(state.garage.currentPage));
+    },
+);
+
 export const {
   setCreateName,
   setCreateColor,
@@ -117,7 +129,6 @@ export const {
   clearEdit,
   setEditName,
   setEditColor,
-  setCurrentPage,
 } = garageSlice.actions;
 
 export default garageSlice.reducer;
